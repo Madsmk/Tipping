@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tippekonkurranse EM 2024</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="tips.html">Tips</a></li>
+                <li><a href="regler.html">Regler</a></li>
+                <li><a href="https://inside.fifa.com/fifa-world-ranking/men" target="_blank">FIFA-ranking</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="containerUserDetails">
+        <h2>Send inn ditt tips</h2>
+        <form id="tipsForm" action="#" method="POST">
+            <label for="fullName">Fullt navn:</label>
+            <input type="text" id="fullName" name="fullName" required>
+    
+            <label for="email">Epost:</label>
+            <input type="email" id="email" name="email" required>
+    
+            <button type="submit">Send inn ditt tips</button>
+        </form>
+    </div>
+
+    <section class="instructions">
+        <h2>Instruksjoner</h2>
+        <p>
+            Velkommen til tippekonkurransen for fotball EM 2024! Here’s how you can use this table to participate in the competition:
+        </p>
+        <ol>
+            <ul>Use the checkboxes in the 'Tips' column to indicate your prediction for each match (H for Home win, U for Draw, B for Away win).</ul>
+        </ol>
+        <p>Good luck, and may the best predictor win!</p>
+    </section>
+       <div class="containerA">
+        <div class="title">Gruppe A</div>
+        <form>
+            <div class="table">
+                <div class="header">
+                    <div class="cell">Hjemmelag</div>
+                    <div class="cell">Bortelag</div>
+                    <div class="cell">Tips</div>
+                    <div class="cell">Dobling</div>
+                    <div class="cell">Poeng H</div>
+                    <div class="cell">Poeng U</div>
+                    <div class="cell">Poeng B</div>
+                    <div class="cell">Maks BP*</div>
+                </div>
+
+                <!-- Use JavaScript to generate rows dynamically -->
+                <script>
+                    for (let i = 1; i <= 6; i++) {
+                        const id = String(i).padStart(2, '0');
+                        const homeId = `HA${id}`;
+                        const drawId = `UA${id}`;
+                        const awayId = `BA${id}`;
+                        //console.log(`Generating row for match ${id}: ${homeId}, ${drawId}, ${awayId}`);
+
+                        document.write(`
+                            <div class="row matchA${id}">
+                                <div class="cell home" id="teamA${i}"></div>
+                                <div class="cell away" id="teamA${i + 1}"></div>
+                                <div class="cell">
+                                    <input type="checkbox" name="matchA${id}" id="${homeId}">
+                                    <input type="checkbox" name="matchA${id}" id="${drawId}">
+                                    <input type="checkbox" name="matchA${id}" id="${awayId}">
+                                    <div class="tips">
+                                        <label for="${homeId}">
+                                            <span class="dot one"></span>
+                                            <span class="utfall">H</span>
+                                        </label>
+                                        <label for="${drawId}">
+                                            <span class="dot two"></span>
+                                            <span class="utfall">U</span>
+                                        </label>
+                                        <label for="${awayId}">
+                                            <span class="dot three"></span>
+                                            <span class="utfall">B</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <input type="radio" name="gruppeA" id="XA${id}" class="radio-option">
+                                    <div class="dobling">
+                                        <label for="XA${id}">
+                                            <span class="radio matchA${i}"></span>
+                                            <span class="utvalgt"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell poeng-h matchA${id}"></div>
+                                <div class="cell poeng-u matchA${id}"></div>
+                                <div class="cell poeng-b matchA${id}"></div>
+                                <div class="cell poeng-bp matchA${id}"></div>
+                            </div>
+                        `);
+                    }
+                </script>
+                        <div class="row">
+                            <div class="cell home"></div>
+                            <div class="cell away"></div>
+                            <div class="cell">Ingen dobling -></div>
+                            <div class="cell">
+                                <input type="radio" name="gruppeA" id="XA07" class="radio-option">
+                                <div class="dobling">
+                                    <label for="XA07">
+                                        <span class="radio matchA7"></span>
+                                        <span class="utvalgt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                        </div>
+            </div>
+
+            <div class="rangeringA">
+                <div class="rangOverskrift">
+                    <div class="cell">Plass</div>
+                    <div class="cell">Land</div>
+                    <div class="cell">Forventet poeng</div>
+                </div>
+                <div class="rad land01">
+                    <div class="cell plass01">1</div>
+                    <div class="cell land land01"></div>
+                    <div class="cell poeng poeng01"></div>
+                </div>
+                <div class="rad land02">
+                    <div class="cell plass02">2</div>
+                    <div class="cell land land02"></div>
+                    <div class="cell poeng poeng02"></div>
+                </div>
+                <div class="rad land03">
+                    <div class="cell plass03">3</div>
+                    <div class="cell land land03"></div>
+                    <div class="cell poeng poeng03"></div>
+                </div>
+                <div class="rad land04">
+                    <div class="cell plass04">4</div>
+                    <div class="cell land land04"></div>
+                    <div class="cell poeng poeng04"></div>
+                </div>
+            </div>  
+        </form>
+    </div>
+
+    <div class="containerB">
+        <div class="title">Gruppe B</div>
+        <form>
+            <div class="table">
+                <div class="header">
+                    <div class="cell">Hjemmelag</div>
+                    <div class="cell">Bortelag</div>
+                    <div class="cell">Tips</div>
+                    <div class="cell">Dobling</div>
+                    <div class="cell">Poeng H</div>
+                    <div class="cell">Poeng U</div>
+                    <div class="cell">Poeng B</div>
+                    <div class="cell">Maks BP*</div>
+                </div>
+
+                <!-- Use JavaScript to generate rows dynamically -->
+                <script>
+                    for (let i = 1; i <= 6; i++) {
+                        const id = String(i).padStart(2, '0');
+                        const homeId = `HB${id}`;
+                        const drawId = `UB${id}`;
+                        const awayId = `BB${id}`;
+                        //console.log(`Generating row for match ${id}: ${homeId}, ${drawId}, ${awayId}`);
+
+                        document.write(`
+                            <div class="row matchB${id}">
+                                <div class="cell home" id="teamB${i}"></div>
+                                <div class="cell away" id="teamB${i + 1}"></div>
+                                <div class="cell">
+                                    <input type="checkbox" name="matchB${id}" id="${homeId}">
+                                    <input type="checkbox" name="matchB${id}" id="${drawId}">
+                                    <input type="checkbox" name="matchB${id}" id="${awayId}">
+                                    <div class="tips">
+                                        <label for="${homeId}">
+                                            <span class="dot one"></span>
+                                            <span class="utfall">H</span>
+                                        </label>
+                                        <label for="${drawId}">
+                                            <span class="dot two"></span>
+                                            <span class="utfall">U</span>
+                                        </label>
+                                        <label for="${awayId}">
+                                            <span class="dot three"></span>
+                                            <span class="utfall">B</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <input type="radio" name="gruppeB" id="XB${id}" class="radio-option">
+                                    <div class="dobling">
+                                        <label for="XB${id}">
+                                            <span class="radio matchB${i}"></span>
+                                            <span class="utvalgt"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell poeng-h matchB${id}"></div>
+                                <div class="cell poeng-u matchB${id}"></div>
+                                <div class="cell poeng-b matchB${id}"></div>
+                                <div class="cell poeng-bp matchB${id}"></div>
+                            </div>
+                        `);
+                    }
+                </script>
+                        <div class="row">
+                            <div class="cell home"></div>
+                            <div class="cell away"></div>
+                            <div class="cell">Ingen dobling -></div>
+                            <div class="cell">
+                                <input type="radio" name="gruppeB" id="XB07" class="radio-option">
+                                <div class="dobling">
+                                    <label for="XB07">
+                                        <span class="radio matchB7"></span>
+                                        <span class="utvalgt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                        </div>
+            </div>
+
+            <div class="rangeringB">
+                <div class="rangOverskrift">
+                    <div class="cell">Plass</div>
+                    <div class="cell">Land</div>
+                    <div class="cell">Forventet poeng</div>
+                </div>
+                <div class="rad land01">
+                    <div class="cell plass01">1</div>
+                    <div class="cell land land01"></div>
+                    <div class="cell poeng poeng01"></div>
+                </div>
+                <div class="rad land02">
+                    <div class="cell plass02">2</div>
+                    <div class="cell land land02"></div>
+                    <div class="cell poeng poeng02"></div>
+                </div>
+                <div class="rad land03">
+                    <div class="cell plass03">3</div>
+                    <div class="cell land land03"></div>
+                    <div class="cell poeng poeng03"></div>
+                </div>
+                <div class="rad land04">
+                    <div class="cell plass04">4</div>
+                    <div class="cell land land04"></div>
+                    <div class="cell poeng poeng04"></div>
+                </div>
+            </div>  
+        </form>
+    </div>
+
+    <div class="containerC">
+        <div class="title">Gruppe C</div>
+        <form>
+            <div class="table">
+                <div class="header">
+                    <div class="cell">Hjemmelag</div>
+                    <div class="cell">Bortelag</div>
+                    <div class="cell">Tips</div>
+                    <div class="cell">Dobling</div>
+                    <div class="cell">Poeng H</div>
+                    <div class="cell">Poeng U</div>
+                    <div class="cell">Poeng B</div>
+                    <div class="cell">Maks BP*</div>
+                </div>
+
+                <!-- Use JavaScript to generate rows dynamically -->
+                <script>
+                    for (let i = 1; i <= 6; i++) {
+                        const id = String(i).padStart(2, '0');
+                        const homeId = `HC${id}`;
+                        const drawId = `UC${id}`;
+                        const awayId = `BC${id}`;
+                        //console.log(`Generating row for match ${id}: ${homeId}, ${drawId}, ${awayId}`);
+
+                        document.write(`
+                            <div class="row matchC${id}">
+                                <div class="cell home" id="teamC${i}"></div>
+                                <div class="cell away" id="teamC${i + 1}"></div>
+                                <div class="cell">
+                                    <input type="checkbox" name="matchC${id}" id="${homeId}">
+                                    <input type="checkbox" name="matchC${id}" id="${drawId}">
+                                    <input type="checkbox" name="matchC${id}" id="${awayId}">
+                                    <div class="tips">
+                                        <label for="${homeId}">
+                                            <span class="dot one"></span>
+                                            <span class="utfall">H</span>
+                                        </label>
+                                        <label for="${drawId}">
+                                            <span class="dot two"></span>
+                                            <span class="utfall">U</span>
+                                        </label>
+                                        <label for="${awayId}">
+                                            <span class="dot three"></span>
+                                            <span class="utfall">B</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <input type="radio" name="gruppeC" id="XC${id}" class="radio-option">
+                                    <div class="dobling">
+                                        <label for="XC${id}">
+                                            <span class="radio matchC${i}"></span>
+                                            <span class="utvalgt"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell poeng-h matchC${id}"></div>
+                                <div class="cell poeng-u matchC${id}"></div>
+                                <div class="cell poeng-b matchC${id}"></div>
+                                <div class="cell poeng-bp matchC${id}"></div>
+                            </div>
+                        `);
+                    }
+                </script>
+                        <div class="row">
+                            <div class="cell home"></div>
+                            <div class="cell away"></div>
+                            <div class="cell">Ingen dobling -></div>
+                            <div class="cell">
+                                <input type="radio" name="gruppeC" id="XC07" class="radio-option">
+                                <div class="dobling">
+                                    <label for="XC07">
+                                        <span class="radio matchC7"></span>
+                                        <span class="utvalgt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                        </div>
+            </div>
+
+            <div class="rangeringC">
+                <div class="rangOverskrift">
+                    <div class="cell">Plass</div>
+                    <div class="cell">Land</div>
+                    <div class="cell">Forventet poeng</div>
+                </div>
+                <div class="rad land01">
+                    <div class="cell plass01">1</div>
+                    <div class="cell land land01"></div>
+                    <div class="cell poeng poeng01"></div>
+                </div>
+                <div class="rad land02">
+                    <div class="cell plass02">2</div>
+                    <div class="cell land land02"></div>
+                    <div class="cell poeng poeng02"></div>
+                </div>
+                <div class="rad land03">
+                    <div class="cell plass03">3</div>
+                    <div class="cell land land03"></div>
+                    <div class="cell poeng poeng03"></div>
+                </div>
+                <div class="rad land04">
+                    <div class="cell plass04">4</div>
+                    <div class="cell land land04"></div>
+                    <div class="cell poeng poeng04"></div>
+                </div>
+            </div>  
+        </form>
+    </div>
+
+    <div class="containerD">
+        <div class="title">Gruppe D</div>
+        <form>
+            <div class="table">
+                <div class="header">
+                    <div class="cell">Hjemmelag</div>
+                    <div class="cell">Bortelag</div>
+                    <div class="cell">Tips</div>
+                    <div class="cell">Dobling</div>
+                    <div class="cell">Poeng H</div>
+                    <div class="cell">Poeng U</div>
+                    <div class="cell">Poeng B</div>
+                    <div class="cell">Maks BP*</div>
+                </div>
+
+                <!-- Use JavaScript to generate rows dynamically -->
+                <script>
+                    for (let i = 1; i <= 6; i++) {
+                        const id = String(i).padStart(2, '0');
+                        const homeId = `HD${id}`;
+                        const drawId = `UD${id}`;
+                        const awayId = `BD${id}`;
+                        //console.log(`Generating row for match ${id}: ${homeId}, ${drawId}, ${awayId}`);
+
+                        document.write(`
+                            <div class="row matchD${id}">
+                                <div class="cell home" id="teamD${i}"></div>
+                                <div class="cell away" id="teamD${i + 1}"></div>
+                                <div class="cell">
+                                    <input type="checkbox" name="matchD${id}" id="${homeId}">
+                                    <input type="checkbox" name="matchD${id}" id="${drawId}">
+                                    <input type="checkbox" name="matchD${id}" id="${awayId}">
+                                    <div class="tips">
+                                        <label for="${homeId}">
+                                            <span class="dot one"></span>
+                                            <span class="utfall">H</span>
+                                        </label>
+                                        <label for="${drawId}">
+                                            <span class="dot two"></span>
+                                            <span class="utfall">U</span>
+                                        </label>
+                                        <label for="${awayId}">
+                                            <span class="dot three"></span>
+                                            <span class="utfall">B</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <input type="radio" name="gruppeD" id="XD${id}" class="radio-option">
+                                    <div class="dobling">
+                                        <label for="XD${id}">
+                                            <span class="radio matchD${i}"></span>
+                                            <span class="utvalgt"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell poeng-h matchD${id}"></div>
+                                <div class="cell poeng-u matchD${id}"></div>
+                                <div class="cell poeng-b matchD${id}"></div>
+                                <div class="cell poeng-bp matchD${id}"></div>
+                            </div>
+                        `);
+                    }
+                </script>
+                        <div class="row">
+                            <div class="cell home"></div>
+                            <div class="cell away"></div>
+                            <div class="cell">Ingen dobling -></div>
+                            <div class="cell">
+                                <input type="radio" name="gruppeD" id="XB0D" class="radio-option">
+                                <div class="dobling">
+                                    <label for="XD07">
+                                        <span class="radio matchD7"></span>
+                                        <span class="utvalgt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                        </div>
+            </div>
+
+            <div class="rangeringD">
+                <div class="rangOverskrift">
+                    <div class="cell">Plass</div>
+                    <div class="cell">Land</div>
+                    <div class="cell">Forventet poeng</div>
+                </div>
+                <div class="rad land01">
+                    <div class="cell plass01">1</div>
+                    <div class="cell land land01"></div>
+                    <div class="cell poeng poeng01"></div>
+                </div>
+                <div class="rad land02">
+                    <div class="cell plass02">2</div>
+                    <div class="cell land land02"></div>
+                    <div class="cell poeng poeng02"></div>
+                </div>
+                <div class="rad land03">
+                    <div class="cell plass03">3</div>
+                    <div class="cell land land03"></div>
+                    <div class="cell poeng poeng03"></div>
+                </div>
+                <div class="rad land04">
+                    <div class="cell plass04">4</div>
+                    <div class="cell land land04"></div>
+                    <div class="cell poeng poeng04"></div>
+                </div>
+            </div>  
+        </form>
+    </div>
+
+    <div class="containerE">
+        <div class="title">Gruppe E</div>
+        <form>
+            <div class="table">
+                <div class="header">
+                    <div class="cell">Hjemmelag</div>
+                    <div class="cell">Bortelag</div>
+                    <div class="cell">Tips</div>
+                    <div class="cell">Dobling</div>
+                    <div class="cell">Poeng H</div>
+                    <div class="cell">Poeng U</div>
+                    <div class="cell">Poeng B</div>
+                    <div class="cell">Maks BP*</div>
+                </div>
+
+                <!-- Use JavaScript to generate rows dynamically -->
+                <script>
+                    for (let i = 1; i <= 6; i++) {
+                        const id = String(i).padStart(2, '0');
+                        const homeId = `HE${id}`;
+                        const drawId = `UE${id}`;
+                        const awayId = `BE${id}`;
+                        //console.log(`Generating row for match ${id}: ${homeId}, ${drawId}, ${awayId}`);
+
+                        document.write(`
+                            <div class="row matchE${id}">
+                                <div class="cell home" id="teamE${i}"></div>
+                                <div class="cell away" id="teamE${i + 1}"></div>
+                                <div class="cell">
+                                    <input type="checkbox" name="matchE${id}" id="${homeId}">
+                                    <input type="checkbox" name="matchE${id}" id="${drawId}">
+                                    <input type="checkbox" name="matchE${id}" id="${awayId}">
+                                    <div class="tips">
+                                        <label for="${homeId}">
+                                            <span class="dot one"></span>
+                                            <span class="utfall">H</span>
+                                        </label>
+                                        <label for="${drawId}">
+                                            <span class="dot two"></span>
+                                            <span class="utfall">U</span>
+                                        </label>
+                                        <label for="${awayId}">
+                                            <span class="dot three"></span>
+                                            <span class="utfall">B</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <input type="radio" name="gruppeE" id="XE${id}" class="radio-option">
+                                    <div class="dobling">
+                                        <label for="XE${id}">
+                                            <span class="radio matchE${i}"></span>
+                                            <span class="utvalgt"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell poeng-h matchE${id}"></div>
+                                <div class="cell poeng-u matchE${id}"></div>
+                                <div class="cell poeng-b matchE${id}"></div>
+                                <div class="cell poeng-bp matchE${id}"></div>
+                            </div>
+                        `);
+                    }
+                </script>
+                        <div class="row">
+                            <div class="cell home"></div>
+                            <div class="cell away"></div>
+                            <div class="cell">Ingen dobling -></div>
+                            <div class="cell">
+                                <input type="radio" name="gruppeE" id="XE07" class="radio-option">
+                                <div class="dobling">
+                                    <label for="XE07">
+                                        <span class="radio matchE7"></span>
+                                        <span class="utvalgt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                        </div>
+            </div>
+
+            <div class="rangeringE">
+                <div class="rangOverskrift">
+                    <div class="cell">Plass</div>
+                    <div class="cell">Land</div>
+                    <div class="cell">Forventet poeng</div>
+                </div>
+                <div class="rad land01">
+                    <div class="cell plass01">1</div>
+                    <div class="cell land land01"></div>
+                    <div class="cell poeng poeng01"></div>
+                </div>
+                <div class="rad land02">
+                    <div class="cell plass02">2</div>
+                    <div class="cell land land02"></div>
+                    <div class="cell poeng poeng02"></div>
+                </div>
+                <div class="rad land03">
+                    <div class="cell plass03">3</div>
+                    <div class="cell land land03"></div>
+                    <div class="cell poeng poeng03"></div>
+                </div>
+                <div class="rad land04">
+                    <div class="cell plass04">4</div>
+                    <div class="cell land land04"></div>
+                    <div class="cell poeng poeng04"></div>
+                </div>
+            </div>  
+        </form>
+    </div>
+
+    <div class="containerF">
+        <div class="title">Gruppe F</div>
+        <form>
+            <div class="table">
+                <div class="header">
+                    <div class="cell">Hjemmelag</div>
+                    <div class="cell">Bortelag</div>
+                    <div class="cell">Tips</div>
+                    <div class="cell">Dobling</div>
+                    <div class="cell">Poeng H</div>
+                    <div class="cell">Poeng U</div>
+                    <div class="cell">Poeng B</div>
+                    <div class="cell">Maks BP*</div>
+                </div>
+
+                <!-- Use JavaScript to generate rows dynamically -->
+                <script>
+                    for (let i = 1; i <= 6; i++) {
+                        const id = String(i).padStart(2, '0');
+                        const homeId = `HF${id}`;
+                        const drawId = `UF${id}`;
+                        const awayId = `BF${id}`;
+                        //console.log(`Generating row for match ${id}: ${homeId}, ${drawId}, ${awayId}`);
+
+                        document.write(`
+                            <div class="row matchF${id}">
+                                <div class="cell home" id="teamF${i}"></div>
+                                <div class="cell away" id="teamF${i + 1}"></div>
+                                <div class="cell">
+                                    <input type="checkbox" name="matchF${id}" id="${homeId}">
+                                    <input type="checkbox" name="matchF${id}" id="${drawId}">
+                                    <input type="checkbox" name="matchF${id}" id="${awayId}">
+                                    <div class="tips">
+                                        <label for="${homeId}">
+                                            <span class="dot one"></span>
+                                            <span class="utfall">H</span>
+                                        </label>
+                                        <label for="${drawId}">
+                                            <span class="dot two"></span>
+                                            <span class="utfall">U</span>
+                                        </label>
+                                        <label for="${awayId}">
+                                            <span class="dot three"></span>
+                                            <span class="utfall">B</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <input type="radio" name="gruppeF" id="XF${id}" class="radio-option">
+                                    <div class="dobling">
+                                        <label for="XF${id}">
+                                            <span class="radio matchF${i}"></span>
+                                            <span class="utvalgt"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="cell poeng-h matchF${id}"></div>
+                                <div class="cell poeng-u matchF${id}"></div>
+                                <div class="cell poeng-b matchF${id}"></div>
+                                <div class="cell poeng-bp matchF${id}"></div>
+                            </div>
+                        `);
+                    }
+                </script>
+                        <div class="row">
+                            <div class="cell home"></div>
+                            <div class="cell away"></div>
+                            <div class="cell">Ingen dobling -></div>
+                            <div class="cell">
+                                <input type="radio" name="gruppeF" id="XF07" class="radio-option">
+                                <div class="dobling">
+                                    <label for="XF07">
+                                        <span class="radio matchF7"></span>
+                                        <span class="utvalgt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                            <div class="cell"></div>
+                        </div>
+            </div>
+
+            <div class="rangeringF">
+                <div class="rangOverskrift">
+                    <div class="cell">Plass</div>
+                    <div class="cell">Land</div>
+                    <div class="cell">Forventet poeng</div>
+                </div>
+                <div class="rad land01">
+                    <div class="cell plass01">1</div>
+                    <div class="cell land land01"></div>
+                    <div class="cell poeng poeng01"></div>
+                </div>
+                <div class="rad land02">
+                    <div class="cell plass02">2</div>
+                    <div class="cell land land02"></div>
+                    <div class="cell poeng poeng02"></div>
+                </div>
+                <div class="rad land03">
+                    <div class="cell plass03">3</div>
+                    <div class="cell land land03"></div>
+                    <div class="cell poeng poeng03"></div>
+                </div>
+                <div class="rad land04">
+                    <div class="cell plass04">4</div>
+                    <div class="cell land land04"></div>
+                    <div class="cell poeng poeng04"></div>
+                </div>
+            </div>  
+        </form>
+    </div>
+
+    <div class="containerThirdPlaceRanking">
+        <div class="rangeringAllTeamsWrapper">
+            <div class="title">Rangering av land på tredjeplass</div>
+            <div class="table">
+                <div class="rangeringAllTeams">
+                    <!-- Third place ranking table will be populated here -->
+                </div>
+            </div>
+        </div>
+    
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <p>Here you can add your instructions content...</p>
+        </div>
+    </div>
+
+    <div class="containerSluttspill">
+        <div class="sluttspillTableWrapper">
+            <div class="title">Sluttspill</div>
+            <div class="table">
+                <div class="sluttspillTable">
+                    <!-- Sluttspill table will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>Sluttspill Instructions</h2>
+            <p>Here you can add your sluttspill instructions content...</p>
+        </div>
+    </div>
+
+    <div class="containerSluttspillTre">
+        <div class="sluttspillTreWrapper">
+            <div class="title">Sluttspillet visualisert</div>
+            <div class="sluttspillTreTable">
+                <div class="column round16">
+                    <h3>8. delsfinale</h3>
+                    <!-- Round of 16 matches will be populated here -->
+                </div>
+                <div class="column quarterfinals">
+                    <h3>Kvartfinale</h3>
+                    <!-- Quarterfinals matches will be populated here -->
+                </div>
+                <div class="column semifinals">
+                    <h3>Semifinale</h3>
+                    <!-- Semifinals matches will be populated here -->
+                </div>
+                <div class="column final">
+                    <h3>Finale</h3>
+                    <!-- Final match will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="index.js"></script>
+</body>
+</html>

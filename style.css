@@ -729,3 +729,27 @@ html, body, .sluttspillTreTable, .round16, .quarterfinals, .semifinals, .final {
     font-style: italic;
     font-size: smaller;
 }
+
+/* Skjul checkboxen, men la den fortsatt være klikkbar via label */
+.tip-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Default dot */
+.tip-option .dot {
+  height: 18px;
+  width: 18px;
+  background: #d9d9d9;
+  margin-right: 10px;
+  border: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* Når checkbox er checked – farg dot */
+.tip-option input:checked + .dot {
+  border-color: #176f08;
+  background: #176f08;
+}

@@ -301,52 +301,6 @@ form input[type="radio"]:checked + label .radio {
 .rangeringA .rad:nth-child(4), .rangeringB .rad:nth-child(4), .rangeringC .rad:nth-child(4), .rangeringD .rad:nth-child(4), .rangeringE .rad:nth-child(4), .rangeringF .rad:nth-child(4) {
     background-color: #bddbfa; /* Light blue for rank 3 */
 }
-
-#XA01:checked ~ .dobling label .radio,
-#XA02:checked ~ .dobling label .radio,
-#XA03:checked ~ .dobling label .radio,
-#XA04:checked ~ .dobling label .radio,
-#XA05:checked ~ .dobling label .radio,
-#XA06:checked ~ .dobling label .radio,
-#XA07:checked ~ .dobling label .radio,
-#XB01:checked ~ .dobling label .radio,
-#XB02:checked ~ .dobling label .radio,
-#XB03:checked ~ .dobling label .radio,
-#XB04:checked ~ .dobling label .radio,
-#XB05:checked ~ .dobling label .radio,
-#XB06:checked ~ .dobling label .radio,
-#XB07:checked ~ .dobling label .radio,
-#XC01:checked ~ .dobling label .radio,
-#XC02:checked ~ .dobling label .radio,
-#XC03:checked ~ .dobling label .radio,
-#XC04:checked ~ .dobling label .radio,
-#XC05:checked ~ .dobling label .radio,
-#XC06:checked ~ .dobling label .radio,
-#XC07:checked ~ .dobling label .radio, 
-#XD01:checked ~ .dobling label .radio,
-#XD02:checked ~ .dobling label .radio,
-#XD03:checked ~ .dobling label .radio,
-#XD04:checked ~ .dobling label .radio,
-#XD05:checked ~ .dobling label .radio,
-#XD06:checked ~ .dobling label .radio,
-#XD07:checked ~ .dobling label .radio, 
-#XE01:checked ~ .dobling label .radio,
-#XE02:checked ~ .dobling label .radio,
-#XE03:checked ~ .dobling label .radio,
-#XE04:checked ~ .dobling label .radio,
-#XE05:checked ~ .dobling label .radio,
-#XE06:checked ~ .dobling label .radio,
-#XE07:checked ~ .dobling label .radio, 
-#XF01:checked ~ .dobling label .radio,
-#XF02:checked ~ .dobling label .radio,
-#XF03:checked ~ .dobling label .radio,
-#XF04:checked ~ .dobling label .radio,
-#XF05:checked ~ .dobling label .radio,
-#XF06:checked ~ .dobling label .radio,
-#XF07:checked ~ .dobling label .radio {
-    border-color: #d9d9d9;
-    background: #176f08;
-}
     
 .containerThirdPlaceRanking {
     max-width: 1100px;
@@ -634,6 +588,31 @@ html, body, .sluttspillTreTable, .round16, .quarterfinals, .semifinals, .final {
 
 /* Når checkbox er checked – farg dot */
 .tip-option input:checked + .dot {
+  border-color: #176f08;
+  background: #176f08;
+}
+
+/* Skjul radio-input, men behold klikk via label */
+.double-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Standard sirkel */
+.double-option .radio {
+  height: 18px;
+  width: 18px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* Valgt dobling */
+.double-option input:checked + .radio {
   border-color: #176f08;
   background: #176f08;
 }

@@ -82,25 +82,23 @@ function getTeamName(teamID) {
 }
 
 function initializeGroups() {
-    const groupCount = 6;
+    const groupLetters = 'ABCDEFGHIJKL'.split(''); // 12 grupper
     const teamCountPerGroup = 4;
-    for (let groupCharCode = 'A'.charCodeAt(0); groupCharCode < 'A'.charCodeAt(0) + groupCount; groupCharCode++) {
-        let group = String.fromCharCode(groupCharCode);
-        groups[group] = {
-            teams: [],
-            teamPoints: {}
-        };
+
+    groupLetters.forEach(group => {
+        groups[group] = { teams: [], teamPoints: {} };
 
         for (let i = 1; i <= teamCountPerGroup; i++) {
-            let teamID = `team${group}${i}`;
-            let teamName = teamMap[teamID]?.name || '';
+            const teamID = `team${group}${i}`;
+            const teamName = teamMap[teamID]?.name || '';
             if (teamName) {
                 groups[group].teams.push(teamName);
                 groups[group].teamPoints[teamName] = 0;
             }
         }
-    }
-    console.log('Groups initialized:', groups); // Debugging log
+    });
+
+    console.log('Groups initialized:', groups);
 }
 
 function fillAllCells() {
@@ -283,49 +281,53 @@ function getTeamRankedThreeFromGroup(group) {
 }
 
 function updateThirdPlacedTeamsRanking() {
-    console.log('updateThirdPlacedTeamsRanking')
+    console.log('updateThirdPlacedTeamsRanking');
+
     const thirdPlaceTeams = [];
-    ['A', 'B', 'C', 'D', 'E', 'F'].forEach(group => {
+    const groupLetters = 'ABCDEFGHIJKL'.split('');
+
+    groupLetters.forEach(group => {
         const team = getTeamRankedThreeFromGroup(group);
         if (team) {
-            thirdPlaceTeams.push({
-                team: team,
-                points: groups[group].teamPoints[team]
-            });
+            thirdPlaceTeams.push({ team, points: groups[group].teamPoints[team], group });
         }
     });
 
     thirdPlaceTeams.sort((a, b) => b.points - a.points);
 
     const rankingTable = document.querySelector('.rangeringAllTeams');
-    if (rankingTable) {
-        rankingTable.innerHTML = `
-            <div class="rangOverskrift">
-                <div class="cell">Plass</div>
-                <div class="cell">Land</div>
-                <div class="cell">Forventet poeng</div>
+    if (!rankingTable) return;
+
+    rankingTable.innerHTML = `
+        <div class="rangOverskrift">
+            <div class="cell">Plass</div>
+            <div class="cell">Land</div>
+            <div class="cell">Forventet poeng</div>
+        </div>
+    `;
+
+    thirdPlaceTeams.forEach(({ team, points }, index) => {
+        let actionsHTML = `${team}`;
+        if (index > 0 && points === thirdPlaceTeams[index - 1].points) {
+            actionsHTML += ` <a href="#" class="opp" data-index="${index}" data-direction="opp">(opp)</a>`;
+        }
+        if (index < thirdPlaceTeams.length - 1 && points === thirdPlaceTeams[index + 1].points) {
+            actionsHTML += ` <a href="#" class="ned" data-index="${index}" data-direction="ned">(ned)</a>`;
+        }
+
+        rankingTable.innerHTML += `
+            <div class="rad" data-group="${thirdPlaceTeams[index].group}">
+                <div class="cell plass">${index + 1}</div>
+                <div class="cell land">${actionsHTML}</div>
+                <div class="cell poeng">${points.toFixed(1)}</div>
             </div>
         `;
+    });
 
-        thirdPlaceTeams.forEach(({ team, points }, index) => {
-            let actionsHTML = `${team}`;
-            if (index > 0 && points === thirdPlaceTeams[index - 1].points) {
-                actionsHTML += ` <a href="#" class="opp" data-index="${index}" data-direction="opp">(opp)</a>`;
-            }
-            if (index < thirdPlaceTeams.length - 1 && points === thirdPlaceTeams[index + 1].points) {
-                actionsHTML += ` <a href="#" class="ned" data-index="${index}" data-direction="ned">(ned)</a>`;
-            }
-            rankingTable.innerHTML += `
-                <div class="rad">
-                    <div class="cell plass">${index + 1}</div>
-                    <div class="cell land">${actionsHTML}</div>
-                    <div class="cell poeng">${points.toFixed(1)}</div>
-                </div>
-            `;
-        });
-        console.log(thirdPlaceTeams)
-        addThirdPlaceEventListeners(thirdPlaceTeams);
-    }
+    addThirdPlaceEventListeners(thirdPlaceTeams);
+
+    // Viktig: send videre tredjeplass-liste slik at sluttspill kan ta topp 8
+    window.__thirdPlaceTeams = thirdPlaceTeams;
 }
 
 function addThirdPlaceEventListeners(thirdPlaceTeams) {
@@ -431,7 +433,7 @@ function populateSluttspillTable() {
 
     const rankingTable = document.querySelector('.rangeringAllTeams');
     if (rankingTable) {
-        const thirdPlaceTeams = Array.from(rankingTable.querySelectorAll('.rad')).slice(0, 4);
+        const thirdPlaceTeams = Array.from(rankingTable.querySelectorAll('.rad')).slice(0, 8);
         thirdPlaceTeams.forEach(row => {
             sluttspillTeams.push({
                 team: row.querySelector('.land').textContent.replace(/\s*\(opp\)\s*|\s*\(ned\)\s*/g, ''),
